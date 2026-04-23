@@ -2,6 +2,7 @@
 const foodForm = document.getElementById('food-form');
 const foodInput = document.getElementById('food-input');
 const imageInput = document.getElementById('image-input');
+const cameraInput = document.getElementById('camera-input');
 const imagePreviewContainer = document.getElementById('image-preview-container');
 const imagePreview = document.getElementById('image-preview');
 const removeImageBtn = document.getElementById('remove-image-btn');
@@ -44,6 +45,32 @@ const views = document.querySelectorAll('.view');
 const apiKeyInput = document.getElementById('api-key-input');
 const saveSettingsBtn = document.getElementById('save-settings-btn');
 const settingsMsg = document.getElementById('settings-msg');
+
+const themeToggleBtn = document.getElementById('theme-toggle-btn');
+const themeText = document.getElementById('theme-text');
+const themeIcon = document.getElementById('theme-icon');
+
+// Initialize Theme
+let currentTheme = localStorage.getItem('nutrilog_theme') || 'dark';
+document.documentElement.setAttribute('data-theme', currentTheme);
+updateThemeUI(currentTheme);
+
+themeToggleBtn.addEventListener('click', () => {
+    currentTheme = currentTheme === 'dark' ? 'light' : 'dark';
+    document.documentElement.setAttribute('data-theme', currentTheme);
+    localStorage.setItem('nutrilog_theme', currentTheme);
+    updateThemeUI(currentTheme);
+});
+
+function updateThemeUI(theme) {
+    if(theme === 'light') {
+        themeText.innerText = 'Dark Mode';
+        themeIcon.innerHTML = '<path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>';
+    } else {
+        themeText.innerText = 'Light Mode';
+        themeIcon.innerHTML = '<circle cx="12" cy="12" r="5"></circle><line x1="12" y1="1" x2="12" y2="3"></line><line x1="12" y1="21" x2="12" y2="23"></line><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line><line x1="1" y1="12" x2="3" y2="12"></line><line x1="21" y1="12" x2="23" y2="12"></line><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>';
+    }
+}
 
 // Date utility
 function getTodayString() {
@@ -259,7 +286,7 @@ foodForm.addEventListener('submit', async (e) => {
 });
 
 // Image Upload Logic
-imageInput.addEventListener('change', (e) => {
+function handleImageChange(e) {
     const file = e.target.files[0];
     if (!file) return;
 
@@ -276,12 +303,16 @@ imageInput.addEventListener('change', (e) => {
         foodInput.required = false; // No longer need text if image is present
     };
     reader.readAsDataURL(file);
-});
+}
+
+imageInput.addEventListener('change', handleImageChange);
+cameraInput.addEventListener('change', handleImageChange);
 
 removeImageBtn.addEventListener('click', removeImage);
 
 function removeImage() {
     imageInput.value = '';
+    cameraInput.value = '';
     selectedImageBase64 = null;
     selectedImageMimeType = null;
     imagePreview.src = '';
