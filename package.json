@@ -1,0 +1,16 @@
+{
+  "name": "nutrilog",
+  "version": "1.0.0",
+  "description": "NutriLog AI",
+  "main": "index.js",
+  "scripts": {
+    "build": "echo \"No build step required for vanilla JS\""
+  },
+  "dependencies": {
+    "@capacitor/android": "^6.0.0",
+    "@capacitor/core": "^6.0.0"
+  },
+  "devDependencies": {
+    "@capacitor/cli": "^6.0.0"
+  }
+}

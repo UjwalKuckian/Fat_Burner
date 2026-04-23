@@ -1,0 +1,6 @@
+{
+  "appId": "com.nutrilog.app",
+  "appName": "NutriLog",
+  "webDir": "www",
+  "bundledWebRuntime": false
+}

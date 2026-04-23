@@ -1,0 +1,51 @@
+{
+    "name": "NutriLog AI",
+    "short_name": "NutriLog",
+    "start_url": "index.html",
+    "display": "standalone",
+    "background_color": "#0d1117",
+    "theme_color": "#6366f1",
+    "description": "AI-powered calorie tracking app.",
+    "icons": [
+        {
+            "src": "icon.png",
+            "sizes": "512x512",
+            "type": "image/png",
+            "purpose": "any maskable"
+        }
+    ],
+    "orientation": "portrait",
+    "display_override": [
+        "window-controls-overlay",
+        "standalone"
+    ],
+    "screenshots": [
+        {
+            "src": "icon.png",
+            "sizes": "512x512",
+            "type": "image/png",
+            "form_factor": "narrow"
+        },
+        {
+            "src": "icon.png",
+            "sizes": "512x512",
+            "type": "image/png",
+            "form_factor": "wide"
+        }
+    ],
+    "shortcuts": [
+        {
+            "name": "Dashboard",
+            "short_name": "Home",
+            "description": "Go to the Dashboard",
+            "url": "/index.html",
+            "icons": [{ "src": "icon.png", "sizes": "512x512" }]
+        }
+    ],
+    "protocol_handlers": [
+        {
+            "protocol": "web+nutrilog",
+            "url": "/index.html?action=%s"
+        }
+    ]
+}
